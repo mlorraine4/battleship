@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+
+.row {
+    display: flex;
+}
+
+.playerGrid, .compGrid {
+    height: 40px;
+    width: 40px;
+    border: 2px solid black;
+}
+
+.boards {
+    display: flex;
+    justify-content: space-around;
+}
+
+#playerBoard {
+    background-color: darkseagreen;
+}
+
+#computerBoard {
+    background-color: lightblue;
+}
+
+.missed {
+    background: url('./images/close.png');
+    background-size: 40px 40px;
+}
+
+.hit {
+    background: url(./images/damage.png);
+    background-size: 40px 40px;
+}
+
+.columnHeader, .flexRow {
+    display: flex;
+}
+
+.columnHeader {
+    margin-left: 12px;
+}
+
+.columnLabel {
+    width: 44px;
+    text-align: center;
+    padding: 5px 0 5px 0;
+}
+
+.rowLabel {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px 0 5px;
+}
+
+.shipHealth {
+    display: flex;
+    justify-content: center;
+}
+
+.health {
+    padding-left: 1em;
+}
+
+.ship {
+    background: url(./images/battleship.png);
+    background-size: 40px 40px;
+}
+
+.destroyerEnemy, .submarineEnemy, .cruiserEnemy, .battleshipEnemy, .carrierEnemy {
+    color: gray;
+}
+
+.playerHealth, .enemyHealth {
+    background-color: beige;
+    border-radius: 8px;
+    border: 2px solid black;
+    text-align: center;
+    width: 200px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.boardTitle {
+    text-align: center;
+}
+
+.healthTitle {
+    font-weight: bold;
+}
+
+.winDisplay {
+    background-color: white;
+    border-radius: 8px;
+    border: 2px solid black;
+    height: auto;
+    width: 400px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50px;
+    display: none;
+    text-align: center;
+}
+
+.winText {
+    padding: 10px 0 10px 0;
+}
+
+.restart {
+    padding: 4px 4px 4px 4px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border: none;
+}
+
+.restart:hover {
+    background-color: lightblue;
+}
