@@ -1,5 +1,5 @@
 import { player } from "..";
-import { controller } from "../controller";
+import { controller } from "../helpers/controller";
 import { createBoard } from "./createPlayerBoard";
 import { createCompBoard } from "./createComputerBoard";
 

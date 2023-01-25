@@ -1,6 +1,5 @@
-import { createBoard } from "./createBoard";
-import { Ship } from "./ships";
-import { attackShip, findShip } from "./attackShip";
+import { createBoard } from "./helpers/createBoard";
+import { Ship } from "./ShipFactory";
 
 const Gameboard = () => {
   const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -18,7 +17,6 @@ const Gameboard = () => {
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipPlacements.length; i++) {
       if (coordinates === shipPlacements[i]) {
-        attackShip( findShip(coordinates, myShips) );
         return true;
       }
     }
@@ -39,7 +37,6 @@ const Gameboard = () => {
   return { board, shipPlacements, myShips, missedAttacks, receiveAttack, allShipsSunk };
 };
 
-
 const fakePlayerGameboard = () => {
   const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -56,7 +53,6 @@ const fakePlayerGameboard = () => {
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipPlacements.length; i++) {
       if (coordinates === shipPlacements[i]) {
-        attackShip(findShip(coordinates, myShips));
         return true;
       }
     }
@@ -66,7 +62,7 @@ const fakePlayerGameboard = () => {
   const allShipsSunk = () => {
     let sunkShips = 0;
     for (let i = 0; i < 5; i++) {
-      if (myShips[i].ship.isSunk() === true) {
+      if (myShips[i].ship.isSunk()) {
         sunkShips++;
       }
     }

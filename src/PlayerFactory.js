@@ -8,6 +8,7 @@ const Player = () => {
             }
         }
         moves.push(coordinates);
+        return moves;
     };
     return { turn, moves, addMove }
 };

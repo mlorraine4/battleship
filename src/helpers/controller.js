@@ -1,11 +1,12 @@
-import { player, computer, playerBoard, computerBoard } from ".";
-import { Gameboard } from "./gameboard"; 
+import { player, computer, playerBoard, computerBoard } from "..";
+import { Gameboard } from "../GameboardFactory"; 
 import { randomInt } from "./enemyShipPlacement";
-import { duplicateMove } from "./moves";
-import { displayMove } from "./DOM/displayAttacks";
-import { findShip, upateHealth } from "./attackShip";
-import { findSunkShips } from "./DOM/sunkEnemyShips";
-import { winnerDisplay } from "./DOM/winnerDisplay";
+import { displayMove } from "../DOM/displayAttacks"
+import { findShip } from "./attackShip";
+import { findSunkShips } from "../DOM/displayShipHealth";
+import { winnerDisplay } from "../DOM/winnerDisplay";
+import { attackShip } from "./attackShip";
+import { updatePlayerHealth } from "../DOM/displayShipHealth";
 
 function controller(coordinates) {
   if (computer.turn) {
@@ -17,7 +18,8 @@ function controller(coordinates) {
       attack
     );
     if (attack) {
-      upateHealth( findShip(coordinates, playerBoard.myShips) );
+      attackShip( findShip(coordinates, playerBoard.myShips) );
+      updatePlayerHealth( findShip(coordinates, playerBoard.myShips) );
     }
     if (playerBoard.allShipsSunk()) {
       return endGame(false);
@@ -26,12 +28,20 @@ function controller(coordinates) {
   }
   else {
     if (player.addMove(coordinates) === false) {
-      return duplicateMove();
+      return;
     }
+    let attack = computerBoard.receiveAttack(coordinates);
     player.addMove(coordinates);
-    displayMove( 'compGrid', coordinates, computerBoard.receiveAttack(coordinates) );
+    displayMove(
+      'compGrid', 
+      coordinates, 
+      attack
+    );
+    if (attack) {
+      attackShip(findShip(coordinates, computerBoard.myShips));
+    }
     findSunkShips(computerBoard.myShips);
-    if (computerBoard.allShipsSunk() === true) {
+    if (computerBoard.allShipsSunk()) {
       return endGame(true);
     }
     changeTurn();

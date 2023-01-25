@@ -10,14 +10,7 @@ function findShip(coordinates, myShips) {
 
 function attackShip(myShip) {
   myShip.ship.hits = myShip.ship.hit();
-  console.log(myShip.ship.hits);
+  return myShip.ship.hits;
 }
 
-function upateHealth(ship) {
-    let div = document.getElementById(ship.name + 'HealthPlayer');
-    let total = ship.ship.size;
-    let health = total - ship.ship.hits;
-    div.innerHTML = health + '/' + total;
-}
-
-export { findShip, attackShip, upateHealth };
+export { findShip, attackShip };

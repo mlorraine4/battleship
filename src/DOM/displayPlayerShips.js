@@ -1,5 +1,5 @@
 
-function findCoordinate(shipPlacements) {
+function findPlayerShips(shipPlacements) {
     for (let i=0; i < shipPlacements.length; i++) {
         displayShip(shipPlacements[i]);
     }
@@ -10,4 +10,4 @@ function displayShip(coordinate) {
     div[0].classList.add('ship');
 }
 
-export { findCoordinate }
+export { findPlayerShips }
