@@ -4,7 +4,7 @@ function randomInt() {
   return number;
 }
 
-function pickDirection(ship, row, column, board, shipPlacements) {
+function randomDirection(ship, row, column, board, shipPlacements) {
   let randomNumber = Math.floor(Math.random() * 4);
   switch (randomNumber) {
     case 0:
@@ -75,7 +75,7 @@ function findValidCoordinates(board, shipPlacements, ship) {
   let coordinates;
   do {
     coordinates = checkCoordinates(
-      pickDirection(ship, randomInt(), randomInt(), board, shipPlacements)
+      randomDirection(ship, randomInt(), randomInt(), board, shipPlacements)
     );
   } while (
     coordinates === false ||
@@ -102,14 +102,14 @@ function findEnemyLocations(board, shipPlacements, enemyShips) {
       shipPlacements,
       enemyShips[i].ship
     );
-    addEnemyLocations(shipPlacements, enemyShips[i]);
+    addLocationsToPlacements(shipPlacements, enemyShips[i]);
   }
 }
 
-function addEnemyLocations(shipPlacements, enemy) {
+function addLocationsToPlacements(shipPlacements, enemy) {
   for (let i = 0; i < enemy.location.length; i++) {
     shipPlacements.push(enemy.location[i]);
   }
 }
 
-export { findEnemyLocations, randomInt };
+export { findEnemyLocations, randomInt, isLocationOccupied };

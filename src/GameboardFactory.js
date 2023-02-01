@@ -1,10 +1,8 @@
-import { createBoard } from "./helpers/createBoard";
+import { Board } from "./helpers/createBoard";
 import { Ship } from "./ShipFactory";
 
 const Gameboard = () => {
-  const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-  const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  let board = createBoard([], rows, columns);
+  let board = Board().createBoard();
   let missedAttacks = [];
   let myShips = [
     { name: "destroyer", ship: Ship(2, 0), location: [] },

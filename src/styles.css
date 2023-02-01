@@ -1,16 +1,24 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     position: relative;
+    width: 100vw;
+    height: 150vh;
+    background-color: #064273;
+    margin: 0;
+}
+
+.gameContent {
+    display: none;
 }
 
 .row {
     display: flex;
 }
 
-.playerGrid, .compGrid {
+.playerGrid, .enemyGrid, .playerStart {
     height: 40px;
     width: 40px;
-    border: 2px solid black;
+    border: 2px solid gray;
 }
 
 .boards {
@@ -69,10 +77,21 @@ body {
 .ship {
     background: url(./images/battleship.png);
     background-size: 40px 40px;
+    height: 40px;
+    width: 40px;
 }
 
 .destroyerEnemy, .submarineEnemy, .cruiserEnemy, .battleshipEnemy, .carrierEnemy {
     color: gray;
+}
+
+.gameInfo {
+    display: none;
+}
+
+#destroyer, #submarine, #cruiser, #battleship, #carrier {
+    width: 40px;
+    height: 40px;
 }
 
 .playerHealth, .enemyHealth {
@@ -123,4 +142,133 @@ body {
 
 .restart:hover {
     background-color: lightblue;
+}
+
+.empty {
+    height: 40px;
+    width: 40px;
+}
+
+.drag-over {
+    border: dashed 2px blue;
+}
+
+.taken {
+    border: 2px solid red;
+}
+
+.possible {
+    border: 2px solid blue;
+}
+
+.playerPickShips {
+    margin-left: 20px;
+}
+
+.pickName {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+#redo, #close {
+    position: fixed;
+    top: 60px;
+	right: calc( ((100vw - 170px)/2 - 60px) );
+    width: 85px;
+    padding: 0;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    color: white;
+    background-color: #064273;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.startDiv {
+    display: none;
+}
+
+.gameInfo, .startInfo {
+    height: 40px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.gameInfo {
+    display: none;
+    width: 400px;
+}
+
+.startInfo {
+    width: 600px;
+}
+
+/* LOTTIE */
+
+#bodymovin {
+	 width: 100%;
+	 height: 100%;
+	 display: block;
+	 overflow: hidden;
+	 transform: translate3d(0, 0, 0);
+	 text-align: center;
+	 opacity: 1;
+}
+ #close {
+	 transition: opacity 0.4s ease 0.1s, color 0.2s, transform 0.2s;
+	 opacity: 0;
+	 right: calc( ((100vw - 170px)/2 + 45px) );
+}
+ .open #close {
+	 opacity: 1;
+}
+ #close:focus {
+	 outline: none;
+	 transform: scale(1.1);
+}
+ .modal {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 width: 100%;
+	 height: 100%;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 flex-direction: column;
+}
+ .modal__content {
+	 opacity: 0;
+	 transform: scale(0.8) translate3D(0, -20px, 0);
+	 transition: opacity 0.2s, transform 0.8s cubic-bezier(0.09, 0.52, 0.25, 1);
+	 text-align: center;
+	 display: flex;
+	 align-items: center;
+	 flex-direction: column;
+	 padding: 1em;
+}
+ .modal h1 {
+	 text-transform: uppercase;
+	 letter-spacing: 0.4em;
+}
+ .modal p {
+	 max-width: 25em;
+	 line-height: 1.9;
+}
+ .open .modal__content {
+	 opacity: 1;
+	 transform: scale(1) translate3D(0, 0, 0);
 }

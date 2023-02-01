@@ -7,8 +7,66 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="bodymovin"></div>
+    <div class="startDiv">
+        <button id="close" name="close">start</button>
+        <button id="redo">redo</button>
+    </div>
+    <div class="modal">
+    <div class="modal__content">
     <h1>Battleship</h1>
-    <button class="restartDemo">restart game</button>
+    <div class="gameInfo">Your turn</div>
+    <div class="pickShips">
+        <div class="startInfo">Place your destroyer ship on grid.</div>
+        <div class="flex">
+            <div id="cloneMe">
+                <div class="playerPickBoard"></div>
+            </div>
+            <div class="playerPickShips">
+                <div>
+                    <div class="flex">
+                        <div class="pickName">Destroyer</div>
+                        <div class="empty">
+                            <div class="ship" id="destroyer" draggable="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                   <div class="flex">
+                        <div class="pickName">Submarine</div>
+                        <div class="empty">
+                            <div class="ship" id="submarine" draggable="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex">
+                        <div class="pickName">Cruiser</div>
+                        <div class="empty">
+                            <div class="ship" id="cruiser" draggable="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                   <div class="flex">
+                        <div class="pickName">Battleship</div>
+                        <div class="empty">
+                            <div class="ship" id="battleship" draggable="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex">
+                        <div class="pickName">Carrier</div>
+                        <div class="empty">
+                            <div class="ship" id="carrier" draggable="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gameContent">
     <div class="flex">
         <div class="winDisplay">
             <div class="winText"></div>
@@ -111,6 +169,11 @@
             </div>
         </div>
     </div>
+    </div>
+    </div>
+</div>
+<!-- TODO: lottie -->
+    
     <script src="main.js"></script>
 </body>
 </html>

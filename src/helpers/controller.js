@@ -1,12 +1,12 @@
 import { player, computer, playerBoard, computerBoard } from "..";
 import { Gameboard } from "../GameboardFactory"; 
 import { randomInt } from "./enemyShipPlacement";
-import { displayMove } from "../DOM/displayAttacks"
+import { displayMove } from "./display"
 import { findShip } from "./attackShip";
-import { findSunkShips } from "../DOM/displayShipHealth";
-import { winnerDisplay } from "../DOM/winnerDisplay";
+import { findSunkShips } from "./display";
+import { winnerDisplay } from "./display";
 import { attackShip } from "./attackShip";
-import { updatePlayerHealth } from "../DOM/displayShipHealth";
+import { updatePlayerHealth } from "./display";
 
 function controller(coordinates) {
   if (computer.turn) {
@@ -33,7 +33,7 @@ function controller(coordinates) {
     let attack = computerBoard.receiveAttack(coordinates);
     player.addMove(coordinates);
     displayMove(
-      'compGrid', 
+      'enemyGrid', 
       coordinates, 
       attack
     );

@@ -1,51 +1,40 @@
-import { UI } from "./DOM/UI";
-import { Gameboard, fakePlayerGameboard } from "./GameboardFactory";
-import { Player } from "./PlayerFactory";
 import './styles.css';
-import { findEnemyLocations } from "./helpers/enemyShipPlacement";
-import { clearBoards, restartHealthDivs } from "./DOM/newGame";
-import { findPlayerShips } from "./DOM/displayPlayerShips";
+import { dragDropController } from './helpers/playerShipPlacement';
+import { restartGame } from './helpers/restart';
+import { createBoard } from './helpers/display';
+import { Player } from './PlayerFactory';
+import { Gameboard } from './GameboardFactory';
+import { bodyMovin } from './animation'
+import { redo } from './helpers/startGame'
 
-// DOM
-UI();
+// TODO: only add draggable to true for one ship at a time in controller
+// TODO: write restart function after game finishes to startGame.js and remove restart.js
 
-// initalize game
-let player = Player();
-let computer = Player();
-let playerBoard = fakePlayerGameboard();
-let computerBoard = Gameboard();
-player.turn = true;
-// display enemy ships
-findEnemyLocations(
-  computerBoard.board,
-  computerBoard.shipPlacements,
-  computerBoard.myShips
-);
-// display player ships
-findPlayerShips(playerBoard.shipPlacements);
+let player;
+let computer;
+let playerBoard;
+let computerBoard;
 
-// restart game
-let button = document.querySelector(".restartDemo");
-button.addEventListener("click", restartGame);
+initalize();
+bodyMovin();
 
-function restartGame() {
+// player chooses their ships' location via drag drop
+dragDropController(1);
+
+let restartBtn = document.querySelector(".restart");
+restartBtn.addEventListener("click", restartGame);
+let redoBtn = document.querySelector("#redo");
+redoBtn.addEventListener("click", redo)
+
+
+function initalize() {
   player = Player();
   computer = Player();
-  playerBoard = fakePlayerGameboard();
+  playerBoard = Gameboard();
   computerBoard = Gameboard();
-  player.turn = true;
-
-  findEnemyLocations(
-    computerBoard.board,
-    computerBoard.shipPlacements,
-    computerBoard.myShips
-  );
-  
-  restartHealthDivs();
-  clearBoards();
-  UI();
-  findPlayerShips(playerBoard.shipPlacements);
-
+  createBoard(".playerPickBoard", "playerStart");
+  createBoard("#playerBoard", "playerGrid");
+  createBoard("#computerBoard", "enemyGrid");
 }
 
-export { player, computer, playerBoard, computerBoard };
+export { player, computer, playerBoard, computerBoard }
