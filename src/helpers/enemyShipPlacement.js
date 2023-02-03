@@ -95,7 +95,7 @@ function isLocationOccupied(coordinates, shipPlacements) {
   return false;
 }
 
-function findEnemyLocations(board, shipPlacements, enemyShips) {
+function randomShipLocations(board, shipPlacements, enemyShips) {
   for (let i = 0; i < enemyShips.length; i++) {
     enemyShips[i].location = findValidCoordinates(
       board,
@@ -112,4 +112,4 @@ function addLocationsToPlacements(shipPlacements, enemy) {
   }
 }
 
-export { findEnemyLocations, randomInt, isLocationOccupied };
+export { randomShipLocations, randomInt, isLocationOccupied };

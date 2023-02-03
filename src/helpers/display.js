@@ -23,13 +23,17 @@ function hidePickBoard() {
   document.querySelector(".pickShips").style.display = "none";
 }
 
-function clearPickBoard() {
+function refreshPickBoard() {
+  console.log('refreshing');
   document.querySelector(".playerPickBoard").innerHTML = "";
+  createBoard(".playerPickBoard", "playerStart");
 }
 
-function clearGameBoards() {
+function refreshGameBoards() {
   document.querySelector("#playerBoard").innerHTML = "";
   document.querySelector("#computerBoard").innerHTML = "";
+  createBoard("#playerBoard", "playerGrid");
+  createBoard("#computerBoard", "enemyGrid");
 }
 
 function hideGameBoards() {
@@ -78,6 +82,36 @@ function makeColumns(row, letter, player) {
   }
 }
 
+// Pick ships info screen
+const infoText = () => {
+  let info = document.querySelector(".startInfo");
+  function playerStart(shipName) {
+    shipName = shipName.slice(1);
+    info.innerHTML = "Place the " + shipName + " ship on your grid.";
+  }
+  function pickDirection() {
+    info.innerHTML = "Choose the direction of your ship.";
+  }
+  function noOption() {
+    info.innerHTML =
+      "There are no available positions for your ship. Choose another location.";
+  }
+  function ready() {
+    info.innerHTML = "Ready!";
+  }
+  return { playerStart, pickDirection, noOption, ready };
+};
+
+// Turns
+function displayTurn(p) {
+  let div = document.querySelector(".gameInfo");
+  if (p === "player") {
+    div.innerHTML = "Your turn"
+  } else {
+    div.innerHTML = "Enemy's turn"
+  }
+}
+
 // Attack
 function displayMove(board, coordinates, boolean) {
   let target = findGridTarget(board, coordinates);
@@ -93,7 +127,7 @@ function findGridTarget(board, coordinates) {
 }
 
 // Ships
-// p is "playerGrid" enemy is "enemyGrid"
+// class: p is "playerGrid", enemy is "enemyGrid", start player is "playerStart"
 function displayShips(shipPlacements, p) {
   for (let i = 0; i < shipPlacements.length; i++) {
     let div = document.getElementsByClassName(p + " " + shipPlacements[i]);
@@ -124,13 +158,14 @@ function updatePlayerHealth(ship) {
 
 // win
 const winnerDisplay = (win) => {
-    let div = document.querySelector('.winDisplay');
-    div.style.display = 'block';
-    if (win) {
-        document.querySelector(".winText").innerHTML = "you win!";
-    } else {
-        document.querySelector(".winText").innerHTML = "all your ships have sunk";
-    }
+  let div = document.querySelector('.winDisplay');
+  div.style.display = 'flex';
+  document.querySelector(".modal").style.opacity = "0.5";
+  if (win) {
+      document.querySelector(".winText").innerHTML = "you win!";
+  } else {
+      document.querySelector(".winText").innerHTML = "all your ships have sunk";
+  }
 };
 
 export {
@@ -143,11 +178,13 @@ export {
   showGameBoards,
   displayReady,
   displayGame,
-  clearGameBoards,
-  clearPickBoard,
+  refreshGameBoards,
+  refreshPickBoard,
   showPickBoard,
   hideGameBoards,
   restartHealthDivs,
   winnerDisplay,
-  displayPick
+  displayPick,
+  displayTurn,
+  infoText
 };

@@ -1,8 +1,7 @@
 import { isLocationOccupied } from "./enemyShipPlacement";
-import { infoText } from "./info";
 import { Board } from "./createBoard";
 import { playerBoard, currentShip } from "..";
-import { displayReady } from "./display";
+import { displayReady, infoText } from "./display";
 
 const dragDropController = (shipCounter) => {
 
@@ -33,6 +32,7 @@ const dragDropController = (shipCounter) => {
   if (shipCounter === 6) {
     currentShip.id = "";
     displayReady();
+    infoText().ready();
   }
 }
 

@@ -1,6 +1,6 @@
 import bodymovin from "./bodymovin";
-import { displayGame, hidePickBoard, showGameBoards } from "./helpers/display";
-import { startGame } from "./helpers/startGame";
+import { displayGame, hidePickBoard, showGameBoards } from "./display";
+import { startGame } from "./startGame";
 
 // bodymovin animation
 function bodyMovin() {

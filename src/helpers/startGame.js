@@ -1,7 +1,7 @@
 import { player, playerBoard, computerBoard, initialize, currentShip } from "..";
 import { controller } from "./controller";
-import { clearPickBoard, displayShips, displayPick } from "./display";
-import { findEnemyLocations } from "./enemyShipPlacement";
+import { displayShips, displayPick, refreshPickBoard, refreshGameBoards, hideGameBoards, showPickBoard } from "./display";
+import { randomShipLocations } from "./enemyShipPlacement";
 import { addShipLocations, displayNextShip, dragDropController } from "./playerShipPlacement";
 
 // game begins after player chooses ship locations
@@ -9,7 +9,7 @@ function startGame() {
 
   addShipLocations();
 
-  findEnemyLocations(
+  randomShipLocations(
     computerBoard.board,
     computerBoard.shipPlacements,
     computerBoard.myShips
@@ -32,20 +32,50 @@ function handleClick(event) {
     }
 }
 
+// button fncs
+function addButtonListeners() {
+  let restartBtn = document.querySelector(".restart");
+  restartBtn.addEventListener("click", restartGame);
+  console.log(restartBtn);
+  let redoBtn = document.querySelector("#redo");
+  redoBtn.addEventListener("click", redo);
+  let randomBtn = document.querySelector(".randomShips");
+  console.log(randomBtn);
+  randomBtn.addEventListener("click", () => {
+    if (currentShip.shipCounter === 6) {
+      return;
+    }
+    initialize();
+    refreshPickBoard();
+    document.querySelectorAll(".empty")[1].innerHTML = "";
+    randomShipLocations(playerBoard.board, playerBoard.shipPlacements, playerBoard.myShips);
+    displayShips(playerBoard.shipPlacements, "playerStart");
+    dragDropController(6);
+  });
+};
+
 // redo for player choosing ship locations
 function redo() {
-  clearPickBoard();
+  refreshPickBoard();
   displayPick();
   initialize();
   displayNextShip(currentShip.id);
   dragDropController(1);
 };
 
-function restart() {
-  // TODO: write fnc
+function restartGame() {
+  document.querySelector(".modal").style.opacity = "1";
+  document.querySelector(".winDisplay").style.display = "none";
+  hideGameBoards();
+  refreshPickBoard();
+  refreshGameBoards();
+  showPickBoard();
+  initialize();
+  displayNextShip(currentShip.id);
+  dragDropController(1);
 }
 
-export { startGame, redo }
+export { startGame, redo, addButtonListeners }
 /*
 credits:
 <a href="https://www.flaticon.com/free-icons/damage" title="damage icons">Damage icons created by Febrian Hidayat - Flaticon</a>

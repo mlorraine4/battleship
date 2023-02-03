@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="winDisplay">
+        <div class="winText"></div>
+        <button class="restart">restart game</button>
+    </div>
     <div id="bodymovin"></div>
     <div class="startDiv">
         <button id="close" name="close">start</button>
@@ -54,21 +58,18 @@
                     <div class="playerPickBoard"></div>
                 </div>
             </div>
-            <div class="playerPickShips">
+            <div>
+                <div class="playerPickShips">
                 <div class="shipyard">Shipyard</div>
                 <div class="empty">
                     <div class="ship shake" id="destroyer"></div>
                 </div>
+                </div>
+                <button class="randomShips">Pick for me</button>
             </div>
         </div>
     </div>
     <div class="gameContent">
-    <div class="flex">
-        <div class="winDisplay">
-            <div class="winText"></div>
-            <button class="restart">restart game</button>
-        </div>
-    </div>
     <div class="boards">
         <div class="player">
             <div class="boardTitle">Your Board</div>

@@ -4,7 +4,7 @@ import { randomInt } from "./enemyShipPlacement";
 import { displayMove } from "./display"
 import { findShip } from "./attackShip";
 import { findSunkShips } from "./display";
-import { winnerDisplay } from "./display";
+import { winnerDisplay, displayTurn } from "./display";
 import { attackShip } from "./attackShip";
 import { updatePlayerHealth } from "./display";
 
@@ -24,6 +24,7 @@ function controller(coordinates) {
     if (playerBoard.allShipsSunk()) {
       return endGame(false);
     }
+    displayTurn("player");
     changeTurn();
   }
   else {
@@ -44,6 +45,7 @@ function controller(coordinates) {
     if (computerBoard.allShipsSunk()) {
       return endGame(true);
     }
+    displayTurn("computer");
     changeTurn();
     setTimeout(controller, 1000, checkEnemyTurn());
   }

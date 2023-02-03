@@ -43,7 +43,7 @@ body {
 .playerGrid, .enemyGrid, .playerStart {
     height: 40px;
     width: 40px;
-    border: 2px solid gray;
+    border: 2px solid white;
 }
 
 .boards {
@@ -52,11 +52,11 @@ body {
 }
 
 #playerBoard {
-    background-color: darkseagreen;
+    background-color: rgb(174, 194, 174, 0.5);
 }
 
 #computerBoard {
-    background-color: lightblue;
+    background-color: #064273;
 }
 
 .missed {
@@ -71,6 +71,10 @@ body {
 
 .columnHeader, .flexRow {
     display: flex;
+}
+
+.columnHeader, #rowHeader {
+    font-weight: bold;
 }
 
 .columnHeader {
@@ -121,11 +125,12 @@ body {
 }
 
 .playerHealth, .enemyHealth {
-    background-color: beige;
+    background-color: whitesmoke;
     border-radius: 8px;
     border: 2px solid black;
     text-align: center;
     width: 200px;
+    padding: 10px;
 }
 
 .flex {
@@ -140,19 +145,22 @@ body {
 
 .healthTitle {
     font-weight: bold;
+    padding: 10px;
 }
 
 .winDisplay {
     background-color: white;
     border-radius: 8px;
     border: 2px solid black;
-    height: auto;
-    width: 400px;
+    height: 3em;
+    width: 5em;
     margin-bottom: 20px;
     position: absolute;
     top: 50px;
     display: none;
     text-align: center;
+    padding: 20px;
+    z-index: 1;
 }
 
 .winText {
@@ -164,10 +172,6 @@ body {
     margin-bottom: 10px;
     border-radius: 12px;
     border: none;
-}
-
-.restart:hover {
-    background-color: lightblue;
 }
 
 .drag-over {
@@ -241,6 +245,18 @@ body {
 .shipyard {
     color: white;
     padding-bottom: 10px;
+}
+
+.randomShips {
+    margin: 20px 0 0 40px;
+    border-radius: 8px;
+    border: none;
+    background-color: white;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: #ebecf0;
 }
 
 /* LOTTIE */
