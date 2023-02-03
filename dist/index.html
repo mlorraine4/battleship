@@ -19,49 +19,45 @@
     <div class="pickShips">
         <div class="startInfo">Place your destroyer ship on grid.</div>
         <div class="flex">
-            <div id="cloneMe">
-                <div class="playerPickBoard"></div>
+            <div class="playerPickShips" id="hidden">
+                <div>Shipyard</div>
+                <div class="empty">
+                    <div class="ship"></div>
+                </div>
+            </div>
+            <div>
+                <div class="columnHeader">
+                    <div class="columnLabel">1</div>
+                    <div class="columnLabel">2</div>
+                    <div class="columnLabel">3</div>
+                    <div class="columnLabel">4</div>
+                    <div class="columnLabel">5</div>
+                    <div class="columnLabel">6</div>
+                    <div class="columnLabel">7</div>
+                    <div class="columnLabel">8</div>
+                    <div class="columnLabel">9</div>
+                    <div class="columnLabel">10</div>              
+                </div>
+                <div class="flexRow" id="addClone">
+                    <div id="rowHeader">
+                        <div class="rowLabel">A</div>
+                        <div class="rowLabel">B</div>
+                        <div class="rowLabel">C</div>
+                        <div class="rowLabel">D</div>
+                        <div class="rowLabel">E</div>
+                        <div class="rowLabel">F</div>
+                        <div class="rowLabel">G</div>
+                        <div class="rowLabel">H</div>
+                        <div class="rowLabel">I</div>
+                        <div class="rowLabel">J</div>
+                    </div>
+                    <div class="playerPickBoard"></div>
+                </div>
             </div>
             <div class="playerPickShips">
-                <div>
-                    <div class="flex">
-                        <div class="pickName">Destroyer</div>
-                        <div class="empty">
-                            <div class="ship" id="destroyer" draggable="true"></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                   <div class="flex">
-                        <div class="pickName">Submarine</div>
-                        <div class="empty">
-                            <div class="ship" id="submarine" draggable="true"></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex">
-                        <div class="pickName">Cruiser</div>
-                        <div class="empty">
-                            <div class="ship" id="cruiser" draggable="true"></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                   <div class="flex">
-                        <div class="pickName">Battleship</div>
-                        <div class="empty">
-                            <div class="ship" id="battleship" draggable="true"></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex">
-                        <div class="pickName">Carrier</div>
-                        <div class="empty">
-                            <div class="ship" id="carrier" draggable="true"></div>
-                        </div>
-                    </div>
+                <div class="shipyard">Shipyard</div>
+                <div class="empty">
+                    <div class="ship shake" id="destroyer"></div>
                 </div>
             </div>
         </div>

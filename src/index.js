@@ -7,15 +7,15 @@ import { Gameboard } from './GameboardFactory';
 import { bodyMovin } from './animation'
 import { redo } from './helpers/startGame'
 
-// TODO: only add draggable to true for one ship at a time in controller
 // TODO: write restart function after game finishes to startGame.js and remove restart.js
 
 let player;
 let computer;
 let playerBoard;
 let computerBoard;
+let currentShip;
 
-initalize();
+initialize();
 bodyMovin();
 
 // player chooses their ships' location via drag drop
@@ -27,14 +27,21 @@ let redoBtn = document.querySelector("#redo");
 redoBtn.addEventListener("click", redo)
 
 
-function initalize() {
+function initialize() {
   player = Player();
   computer = Player();
   playerBoard = Gameboard();
   computerBoard = Gameboard();
+
+  currentShip = {
+    shipCounter: 1,
+    shipDiv: document.querySelector("#destroyer"),
+    id: "#destroyer"
+  };
+
   createBoard(".playerPickBoard", "playerStart");
   createBoard("#playerBoard", "playerGrid");
   createBoard("#computerBoard", "enemyGrid");
 }
 
-export { player, computer, playerBoard, computerBoard }
+export { player, computer, playerBoard, computerBoard, currentShip, initialize }

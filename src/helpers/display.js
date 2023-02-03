@@ -10,6 +10,11 @@ function displayGame() {
   document.querySelector(".gameInfo").style.display = "flex";
 }
 
+function displayPick() {
+  document.querySelector(".startDiv").style.display = "none";
+  document.querySelector(".modal").style.opacity = "1";
+}
+
 const showGameBoards = () => {
   document.querySelector(".gameContent").style.display = "block";
 };
@@ -143,5 +148,6 @@ export {
   showPickBoard,
   hideGameBoards,
   restartHealthDivs,
-  winnerDisplay
+  winnerDisplay,
+  displayPick
 };

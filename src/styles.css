@@ -7,6 +7,31 @@ body {
     margin: 0;
 }
 
+.shake {
+    animation: Shake 3s linear infinite
+}
+
+@keyframes Shake {
+    0% {
+        transform: rotate(5deg);
+    }
+  
+    25% {
+        transform: rotate(-6deg);
+    }
+  
+    50% {
+        transform: rotate(5deg);
+    }
+  
+    75% {
+        transform: rotate(-6deg);
+    }
+  
+    100% {
+        transform: rotate(5deg);
+    }
+}
 .gameContent {
     display: none;
 }
@@ -92,6 +117,7 @@ body {
 #destroyer, #submarine, #cruiser, #battleship, #carrier {
     width: 40px;
     height: 40px;
+    margin: 0 auto;
 }
 
 .playerHealth, .enemyHealth {
@@ -144,11 +170,6 @@ body {
     background-color: lightblue;
 }
 
-.empty {
-    height: 40px;
-    width: 40px;
-}
-
 .drag-over {
     border: dashed 2px blue;
 }
@@ -162,15 +183,12 @@ body {
 }
 
 .playerPickShips {
-    margin-left: 20px;
-}
-
-.pickName {
-    display: flex;
-    align-items: flex-end;
-    margin-right: 10px;
-    width: 80px;
-    height: 40px;
+    margin-left: 40px;
+    background-color: #064273;
+    border: 2px solid white;
+    border-radius: 8px;
+    height: 4em;
+    padding: 20px;
 }
 
 #redo, #close {
@@ -204,7 +222,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin: 0 auto 30px auto;
 }
 
 .gameInfo {
@@ -214,6 +232,15 @@ body {
 
 .startInfo {
     width: 600px;
+}
+
+#hidden {
+    visibility: hidden;
+}
+
+.shipyard {
+    color: white;
+    padding-bottom: 10px;
 }
 
 /* LOTTIE */

@@ -1,39 +1,47 @@
-// ship: is the id of selected ship
-// size is size of ship
 import { isLocationOccupied } from "./enemyShipPlacement";
 import { infoText } from "./info";
 import { Board } from "./createBoard";
-import { playerBoard } from "..";
+import { playerBoard, currentShip } from "..";
 import { displayReady } from "./display";
 
-let shipCounter = 1;
+const dragDropController = (shipCounter) => {
 
-const dragDropController = (ship) => {
-  if (ship === 1) {
-    dragDrop("#destroyer", 2);
+  if (shipCounter === 1) {
+    document.querySelector(currentShip.id).setAttribute("draggable", "true");
+    dragDrop(currentShip.id, 2);
   }
-  if (ship === 2) {
-    dragDrop("#submarine", 3);
+  if (shipCounter === 2) {
+    currentShip.id = "#submarine";
+    displayNextShip(currentShip.id);
+    dragDrop(currentShip.id, 3);
   }
-  if (ship === 3) {
-    dragDrop("#cruiser", 3);
+  if (shipCounter === 3) {
+    currentShip.id = "#cruiser";
+    displayNextShip(currentShip.id);
+    dragDrop(currentShip.id, 3);
   }
-  if (ship === 4) {
-    dragDrop("#battleship", 4);
+  if (shipCounter === 4) {
+    currentShip.id = "#battleship";
+    displayNextShip(currentShip.id);
+    dragDrop(currentShip.id, 4);
   }
-  if (ship === 5) {
-    dragDrop("#carrier", 5);
+  if (shipCounter === 5) {
+    currentShip.id = "#carrier";
+    displayNextShip(currentShip.id);
+    dragDrop(currentShip.id, 5);
   }
-  if (ship === 6) {
+  if (shipCounter === 6) {
+    currentShip.id = "";
     displayReady();
   }
 }
 
+// ship: is the id of selected ship
+// size is size of ship
 const dragDrop = (shipID, size) => {
+
   infoText().playerStart(shipID);
-  document
-    .querySelector(shipID)
-    .addEventListener("dragstart", dragStart);
+  document.querySelector(shipID).addEventListener("dragstart", dragStart);
 
   function dragStart(e) {
     e.dataTransfer.setData("text/plain", e.target.id);
@@ -48,9 +56,7 @@ const dragDrop = (shipID, size) => {
   });
 
   function dragEnter(e) {
-    infoText().playerStart(shipID);
     e.preventDefault();
-    DOM().removeDisplay();
     e.target.classList.add("drag-over");
   }
 
@@ -65,11 +71,15 @@ const dragDrop = (shipID, size) => {
   }
 
   function drop(e) {
-    infoText().pickDirection();
     e.target.classList.remove("drag-over");
     let id = e.dataTransfer.getData('text/plain');
     let draggable = document.getElementById(id);
+    if (draggable === null) {
+      return
+    }
+    DOM().removeDisplay();
     e.target.appendChild(draggable);
+    infoText().pickDirection();
     draggable.classList.remove("hide");
     if ( findPossibleDirections(e.target.id, size) === false ){
       e.target.classList.add("taken");
@@ -186,8 +196,15 @@ function findPossibleDirections(coordinate, shipSize) {
   }
 }
 
-const DOM = () => {
+function displayNextShip(id) {
+  let shipDiv = document.createElement('div');
+  shipDiv.setAttribute("id", id.slice(1));
+  shipDiv.setAttribute("class", "ship shake");
+  document.querySelectorAll(".empty")[1].appendChild(shipDiv);
+  document.querySelector(id).setAttribute("draggable", "true");
+}
 
+const DOM = () => {
   function display(coordinateArray) {
     for (let i = 1; i < coordinateArray.length; i++) {
       let gridItem = document.querySelector("." + coordinateArray[i]);
@@ -206,26 +223,30 @@ const DOM = () => {
   function addDirectionListener(coordinateArray) {
     for (let i = 0; i < coordinateArray.length; i++) {
       let gridItem = document.querySelector("." + coordinateArray[i]);
-      gridItem.addEventListener(
-        "click",
-        () => {
-          handle(coordinateArray);
-        });
+      gridItem.addEventListener("click", (e) => {
+        if (e.target.id === currentShip.id.slice(1)) {
+          return
+        }
+        handle(coordinateArray);
+      });
     }
   }
 
   function handle(coordinateArray) {
-    for ( let i=0; i < coordinateArray.length; i++) {
+    removeAnimation(document.querySelector("." + coordinateArray[0]));
+    for (let i = 0; i < coordinateArray.length; i++) {
       playerBoard.shipPlacements.push(coordinateArray[i]);
-      console.log(playerBoard.shipPlacements);
-      document.querySelector("." + coordinateArray[i]);
     }
     direction(coordinateArray);
     removeDragShip(coordinateArray[0]);
     removeDisplay();
     cloneDiv();
-    shipCounter++;
-    dragDropController(shipCounter);
+    currentShip.shipCounter++;
+    dragDropController(currentShip.shipCounter);
+  }
+
+  function removeAnimation(ship) {
+    ship.classList.remove("shake");
   }
 
   function direction(arr) {
@@ -234,10 +255,10 @@ const DOM = () => {
       gridItem.classList.add("ship");
     }
   }
-
+  // removes all event listeners with anonymous fnc in addDirectionListener
   function cloneDiv() {
     const sourceElement = document.querySelector(".playerPickBoard");
-    const destination = document.getElementById("cloneMe");
+    const destination = document.getElementById("addClone");
     const copy = sourceElement.cloneNode(true);
     destination.appendChild(copy);
     destination.removeChild(document.querySelector(".playerPickBoard"));
@@ -248,7 +269,7 @@ const DOM = () => {
     ship.removeChild(ship.firstChild);
   }
 
-  return { display, removeDisplay }
+  return { display, removeDisplay };
 };
 
 function addShipLocations() {
@@ -259,4 +280,4 @@ function addShipLocations() {
   playerBoard.myShips[4].location = playerBoard.shipPlacements.slice(12, 17);
 }
 
-export { dragDropController, addShipLocations }
+export { dragDropController, addShipLocations, displayNextShip }

@@ -1,19 +1,8 @@
-import { player, playerBoard, computerBoard, computer } from "..";
+import { player, playerBoard, computerBoard, initialize, currentShip } from "..";
 import { controller } from "./controller";
-import { clearPickBoard, createBoard, displayShips } from "./display";
+import { clearPickBoard, displayShips, displayPick } from "./display";
 import { findEnemyLocations } from "./enemyShipPlacement";
-import { addShipLocations } from "./playerShipPlacement";
-
-// redo
-function redo() {
-  clearPickBoard();
-  createBoard(".playerPickBoard", "playerStart");
-  playerBoard.shipPlacements = [];
-
-  // TODO:add ships back to empty divs; use parent div to add class = ship and id = name, draggable true for destroyer
-  // TODO:hide start/redo buttons div
-  // TODO:opactiy 1 of game again
-};
+import { addShipLocations, displayNextShip, dragDropController } from "./playerShipPlacement";
 
 // game begins after player chooses ship locations
 function startGame() {
@@ -41,6 +30,19 @@ function handleClick(event) {
     if (player.turn) {
         controller(event.target.id);
     }
+}
+
+// redo for player choosing ship locations
+function redo() {
+  clearPickBoard();
+  displayPick();
+  initialize();
+  displayNextShip(currentShip.id);
+  dragDropController(1);
+};
+
+function restart() {
+  // TODO: write fnc
 }
 
 export { startGame, redo }
