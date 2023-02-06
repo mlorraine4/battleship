@@ -24,7 +24,9 @@ function controller(coordinates) {
     if (playerBoard.allShipsSunk()) {
       return endGame(false);
     }
-    displayTurn("player");
+    setTimeout(()=> {
+      displayTurn("player");
+    }, 500);
     changeTurn();
   }
   else {
@@ -45,7 +47,9 @@ function controller(coordinates) {
     if (computerBoard.allShipsSunk()) {
       return endGame(true);
     }
-    displayTurn("computer");
+    setTimeout(() => {
+      displayTurn("computer");
+    }, 400);
     changeTurn();
     setTimeout(controller, 1000, checkEnemyTurn());
   }

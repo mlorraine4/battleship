@@ -24,7 +24,6 @@ function hidePickBoard() {
 }
 
 function refreshPickBoard() {
-  console.log('refreshing');
   document.querySelector(".playerPickBoard").innerHTML = "";
   createBoard(".playerPickBoard", "playerStart");
 }

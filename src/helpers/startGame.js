@@ -36,11 +36,9 @@ function handleClick(event) {
 function addButtonListeners() {
   let restartBtn = document.querySelector(".restart");
   restartBtn.addEventListener("click", restartGame);
-  console.log(restartBtn);
   let redoBtn = document.querySelector("#redo");
   redoBtn.addEventListener("click", redo);
   let randomBtn = document.querySelector(".randomShips");
-  console.log(randomBtn);
   randomBtn.addEventListener("click", () => {
     if (currentShip.shipCounter === 6) {
       return;
