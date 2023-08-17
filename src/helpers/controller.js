@@ -24,10 +24,11 @@ function controller(coordinates) {
     if (playerBoard.allShipsSunk()) {
       return endGame(false);
     }
+    computer.turn = false;
     setTimeout(()=> {
       displayTurn("player");
+      changeTurn("player");
     }, 500);
-    changeTurn();
   }
   else {
     if (player.addMove(coordinates) === false) {
@@ -47,17 +48,23 @@ function controller(coordinates) {
     if (computerBoard.allShipsSunk()) {
       return endGame(true);
     }
+    player.turn = false;
     setTimeout(() => {
       displayTurn("computer");
+      changeTurn("computer");
+      setTimeout(controller, 1000, checkEnemyTurn());
     }, 400);
-    changeTurn();
-    setTimeout(controller, 1000, checkEnemyTurn());
   }
 }
 
-function changeTurn() {
-  player.turn = !player.turn;
-  computer.turn = !computer.turn;
+function changeTurn(p) {
+  if (p === "player") {
+    player.turn = true;
+    computer.turn = false;
+  } else {
+    player.turn = false;
+    computer.turn = true;
+  }
 }
 
 function enemyTurn() {

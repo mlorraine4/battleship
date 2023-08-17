@@ -40,6 +40,7 @@ const dragDropController = (shipCounter) => {
 // size is size of ship
 const dragDrop = (shipID, size) => {
 
+  DOM().removeDisplay();
   infoText().playerStart(shipID);
   document.querySelector(shipID).addEventListener("dragstart", dragStart);
 
@@ -58,6 +59,7 @@ const dragDrop = (shipID, size) => {
   function dragEnter(e) {
     e.preventDefault();
     e.target.classList.add("drag-over");
+    DOM().removeDisplay();
   }
 
   function dragOver(e) {
@@ -77,7 +79,6 @@ const dragDrop = (shipID, size) => {
     if (draggable === null) {
       return
     }
-    DOM().removeDisplay();
     e.target.appendChild(draggable);
     infoText().pickDirection();
     draggable.classList.remove("hide");
