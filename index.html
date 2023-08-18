@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" initial-scale=1.0>
+    <title>Document</title>
+</head>
+<body>
+    <div class="winDisplay">
+        <div class="winText">You win!</div>
+        <button class="restart">restart game</button>
+    </div>
+    <div id="bodymovin"></div>
+    <div class="startDiv">
+        <button id="close" name="close">start</button>
+        <button id="redo">redo</button>
+    </div>
+    <div class="modal">
+    <div class="modal__content">
+    <h1>Battleship</h1>
+    <div class="pickShips">
+        <div class="startInfo">Place your destroyer ship on grid.</div>
+        <div class="flex">
+            <div class="playerPickShips" id="hidden">
+                <div>Shipyard</div>
+                <div class="empty">
+                    <div class="ship"></div>
+                </div>
+            </div>
+            <div>
+                <div class="columnHeader">
+                    <div class="columnLabel">1</div>
+                    <div class="columnLabel">2</div>
+                    <div class="columnLabel">3</div>
+                    <div class="columnLabel">4</div>
+                    <div class="columnLabel">5</div>
+                    <div class="columnLabel">6</div>
+                    <div class="columnLabel">7</div>
+                    <div class="columnLabel">8</div>
+                    <div class="columnLabel">9</div>
+                    <div class="columnLabel">10</div>              
+                </div>
+                <div class="flexRow" id="addClone">
+                    <div id="rowHeader">
+                        <div class="rowLabel">A</div>
+                        <div class="rowLabel">B</div>
+                        <div class="rowLabel">C</div>
+                        <div class="rowLabel">D</div>
+                        <div class="rowLabel">E</div>
+                        <div class="rowLabel">F</div>
+                        <div class="rowLabel">G</div>
+                        <div class="rowLabel">H</div>
+                        <div class="rowLabel">I</div>
+                        <div class="rowLabel">J</div>
+                    </div>
+                    <div class="playerPickBoard"></div>
+                </div>
+            </div>
+            <div>
+                <div class="playerPickShips">
+                <div class="shipyard">Shipyard</div>
+                <div class="empty">
+                    <div class="ship shake" id="destroyer"></div>
+                </div>
+                </div>
+                <button class="randomShips">Pick for me</button>
+            </div>
+        </div>
+    </div>
+    <div class="gameContent">
+    <div class="gameInfo">Your turn</div>
+    <div class="boards">
+        <div class="player">
+            <div class="boardTitle">Your Board</div>
+            <div class="columnHeader">
+                <div class="columnLabel">1</div>
+                <div class="columnLabel">2</div>
+                <div class="columnLabel">3</div>
+                <div class="columnLabel">4</div>
+                <div class="columnLabel">5</div>
+                <div class="columnLabel">6</div>
+                <div class="columnLabel">7</div>
+                <div class="columnLabel">8</div>
+                <div class="columnLabel">9</div>
+                <div class="columnLabel">10</div>              
+            </div>
+            <div class="flexRow">
+                <div id="rowHeader">
+                    <div class="rowLabel">A</div>
+                    <div class="rowLabel">B</div>
+                    <div class="rowLabel">C</div>
+                    <div class="rowLabel">D</div>
+                    <div class="rowLabel">E</div>
+                    <div class="rowLabel">F</div>
+                    <div class="rowLabel">G</div>
+                    <div class="rowLabel">H</div>
+                    <div class="rowLabel">I</div>
+                    <div class="rowLabel">J</div>
+                </div>
+                <div id="playerBoard"></div>
+            </div>
+            <div class="flex">
+                <div class="playerHealth">
+                    <div class="healthTitle">Ship Health</div>
+                    <div class="shipHealth">
+                        <div>Destroyer:</div>
+                        <div id="destroyerHealthPlayer" class="health">2/2</div>
+                    </div>
+                    <div class="shipHealth">
+                        <div>Submarine:</div>
+                        <div id="submarineHealthPlayer" class="health">3/3</div>
+                    </div>
+                    <div class="shipHealth">
+                        <div>Cruiser:</div>
+                        <div id="cruiserHealthPlayer" class="health">3/3</div>
+                    </div>
+                    <div class="shipHealth">
+                        <div>Battleship:</div>
+                        <div id="battleshipHealthPlayer" class="health">4/4</div>
+                    </div>
+                    <div class="shipHealth">
+                        <div>Carrier:</div>
+                        <div id="carrierHealthPlayer" class="health">5/5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="computer">
+            <div class="boardTitle">Enemy Board</div>
+            <div class="columnHeader">
+                <div class="columnLabel">1</div>
+                <div class="columnLabel">2</div>
+                <div class="columnLabel">3</div>
+                <div class="columnLabel">4</div>
+                <div class="columnLabel">5</div>
+                <div class="columnLabel">6</div>
+                <div class="columnLabel">7</div>
+                <div class="columnLabel">8</div>
+                <div class="columnLabel">9</div>
+                <div class="columnLabel">10</div>              
+            </div>
+            <div class="flexRow">
+                <div id="rowHeader">
+                    <div class="rowLabel">A</div>
+                    <div class="rowLabel">B</div>
+                    <div class="rowLabel">C</div>
+                    <div class="rowLabel">D</div>
+                    <div class="rowLabel">E</div>
+                    <div class="rowLabel">F</div>
+                    <div class="rowLabel">G</div>
+                    <div class="rowLabel">H</div>
+                    <div class="rowLabel">I</div>
+                    <div class="rowLabel">J</div>
+                </div>
+            <div id="computerBoard"></div>
+        </div>
+        <div class="flex">
+            <div class="enemyHealth">
+            <div class="healthTitle">Sunk Enemy Ships</div>
+                <div class="destroyerEnemy">Destroyer</div>
+                <div class="submarineEnemy">Submarine</div>
+                <div class="cruiserEnemy">Cruiser</div>
+                <div class="battleshipEnemy">Battleship</div>
+                <div class="carrierEnemy">Carrier</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+<!-- TODO: lottie -->
+    
+    <script src="main.js"></script>
+</body>
+</html>
