@@ -149,6 +149,7 @@ body {
 }
 
 .winDisplay {
+    flex-direction: column;
     background-color: white;
     border-radius: 8px;
     border: 2px solid black;
@@ -173,6 +174,10 @@ body {
     margin-bottom: 10px;
     border-radius: 12px;
     border: none;
+    width: min-content;
+    height: min-content;
+    background-color: #064273;
+    color: white;
 }
 
 .drag-over {
