@@ -11,9 +11,8 @@
 
 ## Built with
 
-- HTML
-- CSS
 - JS
+- CSS
 - Webpack
 
 </br>
@@ -22,6 +21,7 @@
 
 - Play battleship against a computer!
 - Choose the placement of your warships, or let the game decide for you.
+- First player to sink all enemy ships wins!
 
 </br>
 
