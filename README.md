@@ -7,7 +7,7 @@
 
 # 👇 Live Demo 👇
 
-[Live Demo]()
+[Live Demo](https://mlorraine4.github.io/battleship/)
 
 ## Built with
 
